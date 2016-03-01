@@ -32,8 +32,24 @@
 #ifndef CONFIG_MTK_EMMC_SUPPORT_OTP
 #define CONFIG_MTK_EMMC_SUPPORT_OTP     
 #endif
+//add by cansong.li for FR595365 open OTP
+#ifndef CONFIG_MTK_MODEM_OTP_SUPPORT
+#define CONFIG_MTK_MODEM_OTP_SUPPORT
+#endif
+//end FR595365
 
 #define EMMC_OTP_DEBUG           1
+
+#define TRACE_REGION "/dev/pro_info"
+#define TRACE_REGION_SZ (0x200)
+#define TRACE_ID_OFFSET (0x169)
+
+typedef struct {
+    unsigned int group;
+    unsigned int offset;
+    int          cached;
+} id_offset_t;
+static id_offset_t g_id_offset;
 
 //static spinlock_t               g_emmc_otp_lock;
 static struct emmc_otp_config   g_emmc_otp_func;
@@ -540,7 +556,6 @@ static int mt_otp_access(unsigned int access_type, unsigned int offset, void *bu
 exit:
     return ret;
 }
-
 static long mt_otp_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 {
     int ret = 0;
@@ -557,7 +572,6 @@ static long mt_otp_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
         ret = -EFAULT;
         goto exit;
     }
-
     /*
     if(false == g_bInitDone)
     {
