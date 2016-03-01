@@ -32,6 +32,14 @@ config MTK_EMMC_SUPPORT_OTP
 	  device. Say Y if you turns on MTK_EMMC and want to use MTK OTP 
 	  partition for storing One-Time-Programming data. If unsure, say N.
 
+config MTK_MODEM_OTP_SUPPORT
+	tristate "MediaTek MODEM OTP support"
+	depends on MTK_MODEM_OTP
+	help
+	  This enables MTK One-Time-Programming (OTP) partition support on MODEM
+	  device. Say Y if you turns on MTK_MODEM and want to use MTK OTP 
+	  partition for storing One-Time-Programming data. If unsure, say N.
+
 config MTK_SDIOAUTOK_SUPPORT
         tristate "MediaTek SDIO Auto-K support (for SDIO 3.0)"
         depends on MTK_MMC
