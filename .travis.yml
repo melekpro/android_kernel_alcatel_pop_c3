@@ -32,6 +32,7 @@ script:
   - mkdir out
   - make O=out pop_c3_defconfig
   - make O=out -j2
+  - make ARCH=arm -j16 clean mrproper
 
 after_success:
   - curl --upload-file out/arch/arm/boot/zImage https://transfer.sh/pop_c3_kernel
