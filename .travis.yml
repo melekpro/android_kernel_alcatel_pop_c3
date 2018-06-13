@@ -29,9 +29,10 @@ script:
   - export CROSS_COMPILE=~/arm-eabi-4.8/bin/arm-eabi-
   - export KBUILD_BUILD_USER="root"
   - export KBUILD_BUILD_HOST="Manish4586"
-  - mkdir out
-  - make pop_c3_defconfig O=out/
-  - make -j4 O=out/
+  - KERNEL_DIR=$PWD
+  - ZIMAGE=$KERNEL_DIR/arch/arm/boot/zImage
+  - make pop_c3_defconfig 
+  - make -j4 
   - make ARCH=arm -j4 clean mrproper
 
 after_success:
