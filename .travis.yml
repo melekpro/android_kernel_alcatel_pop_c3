@@ -36,6 +36,6 @@ script:
   - make ARCH=arm -j4 clean mrproper
 
 after_success:
-  - curl --upload-file arch/arm/boot/zImage https://transfer.sh/pop_c3_kernel_oreo_test
+  - curl --upload-file arch/arm/boot/zImage https://transfer.sh/oreo_c3_kernel
   
   
